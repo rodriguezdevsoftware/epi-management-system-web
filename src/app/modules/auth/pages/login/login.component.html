@@ -1,0 +1,55 @@
+<div class="login-wrapper">
+
+  <!-- Lado esquerdo -->
+  <div class="login-left">
+
+    <div class="left-content">
+      <h1>EPI Manager</h1>
+
+      <p>
+        Sistema de gestão de entrega de EPIs para controle e segurança do trabalho.
+      </p>
+
+      <button mat-stroked-button color="primary">
+        Saiba mais
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Lado direito -->
+  <div class="login-right">
+
+    <mat-card class="login-card">
+
+      <h2>Entrar no sistema</h2>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email">
+          <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            Email é obrigatório e deve ser válido.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Senha</mat-label>
+          <input matInput type="password" formControlName="password">
+          <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            Senha é obrigatória.
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="full-width" type="submit" [disabled]="loginForm.invalid">
+          Entrar
+        </button>
+
+      </form>
+
+    </mat-card>
+
+  </div>
+
+</div>

@@ -1,0 +1,52 @@
+.login-wrapper{
+  height:100vh;
+  display:flex;
+  font-family: Roboto, sans-serif;
+}
+
+/* lado esquerdo */
+
+.login-left{
+  flex:1;
+  background: linear-gradient(135deg,#4f46e5,#6366f1);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.left-content{
+  width:70%;
+}
+
+.left-content h1{
+  font-size:48px;
+  margin-bottom:20px;
+}
+
+.left-content p{
+  font-size:18px;
+  margin-bottom:30px;
+  opacity:0.9;
+}
+
+/* lado direito */
+
+.login-right{
+  flex:1;
+  background:#f5f5f5;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.login-card{
+  width:400px;
+  padding:30px;
+}
+
+.full-width{
+  width:100%;
+  margin-bottom:15px;
+}
