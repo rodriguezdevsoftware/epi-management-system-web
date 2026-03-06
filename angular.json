@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "epi-management-system": {
+    "epi-management-system-web": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -24,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/epi-management-system",
+            "outputPath": "dist/epi-management-system-web",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "epi-management-system:build:production"
+              "buildTarget": "epi-management-system-web:build:production"
             },
             "development": {
-              "buildTarget": "epi-management-system:build:development"
+              "buildTarget": "epi-management-system-web:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "epi-management-system:build"
+            "buildTarget": "epi-management-system-web:build"
           }
         },
         "test": {
