@@ -4,15 +4,29 @@
   <div class="login-left">
 
     <div class="left-content">
+      <div class="logo-container">
+        <mat-icon class="logo-icon">verified_user</mat-icon>
+      </div>
       <h1>EPI Manager</h1>
 
       <p>
         Sistema de gestão de entrega de EPIs para controle e segurança do trabalho.
       </p>
 
-      <button mat-stroked-button color="primary">
-        Saiba mais
-      </button>
+      <div class="features">
+        <div class="feature-item">
+          <mat-icon>check_circle</mat-icon>
+          <span>Controle completo</span>
+        </div>
+        <div class="feature-item">
+          <mat-icon>check_circle</mat-icon>
+          <span>Segurança garantida</span>
+        </div>
+        <div class="feature-item">
+          <mat-icon>check_circle</mat-icon>
+          <span>Fácil gerenciamento</span>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -22,13 +36,17 @@
 
     <mat-card class="login-card">
 
-      <h2>Entrar no sistema</h2>
+      <div class="card-header">
+        <h2>Bem-vindo de volta!</h2>
+        <p class="subtitle">Entre com suas credenciais para continuar</p>
+      </div>
 
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email">
+          <input matInput type="email" formControlName="email" placeholder="seu@email.com">
+          <mat-icon matPrefix>email</mat-icon>
           <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
             Email é obrigatório e deve ser válido.
           </mat-error>
@@ -36,17 +54,36 @@
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Senha</mat-label>
-          <input matInput type="password" formControlName="password">
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" placeholder="Digite sua senha">
+          <mat-icon matPrefix>lock</mat-icon>
+          <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
           <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
             Senha é obrigatória.
           </mat-error>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" class="full-width" type="submit" [disabled]="loginForm.invalid">
+        <div class="forgot-password">
+          <a (click)="onForgotPassword()" class="link">Esqueceu a senha?</a>
+        </div>
+
+        <button mat-raised-button color="primary" class="full-width login-button" type="submit" [disabled]="loginForm.invalid">
           Entrar
         </button>
 
       </form>
+
+      <div class="divider">
+        <span>ou</span>
+      </div>
+
+      <div class="register-section">
+        <p>Ainda não tem uma conta?</p>
+        <button mat-stroked-button color="primary" class="full-width register-button" (click)="onRegister()">
+          Criar conta
+        </button>
+      </div>
 
     </mat-card>
 
