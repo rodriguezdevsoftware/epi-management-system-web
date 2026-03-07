@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   
   loginForm: FormGroup;
+  hidePassword = true;
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({
@@ -25,5 +26,17 @@ export class LoginComponent {
 
       this.router.navigate(['/home']);
     }
+  }
+
+  onForgotPassword() {
+    // Navegar para página de recuperação de senha
+    console.log('Navegar para recuperação de senha');
+    // this.router.navigate(['/auth/forgot-password']);
+  }
+
+  onRegister() {
+    // Navegar para página de registro
+    console.log('Navegar para página de registro');
+    // this.router.navigate(['/auth/register']);
   }
 }
