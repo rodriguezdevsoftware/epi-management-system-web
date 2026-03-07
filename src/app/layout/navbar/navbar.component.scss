@@ -1,0 +1,137 @@
+.horizontal-menu {
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #e0e0e0;
+  height: 56px;
+  flex-shrink: 0;
+
+  .menu-item-wrapper {
+    display: inline-flex;
+  }
+
+  .menu-item {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px !important;
+    margin: 0 4px;
+    border-radius: 8px !important;
+    text-decoration: none;
+    color: #424242 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    height: 48px !important;
+    min-width: auto !important;
+    line-height: 48px !important;
+    font-family: Roboto, sans-serif !important;
+
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      color: #4f46e5;
+    }
+
+    .menu-label-with-arrow {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .dropdown-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+      color: #424242;
+    }
+
+    &:hover {
+      background-color: #f5f5f5 !important;
+    }
+
+    &.active-menu-item {
+      background: linear-gradient(135deg, #4f46e5, #6366f1) !important;
+      color: white !important;
+
+      mat-icon {
+        color: white;
+      }
+
+      .dropdown-icon {
+        color: white;
+      }
+    }
+  }
+
+  // Sobrescrever estilos do mat-button
+  .mat-mdc-button {
+    &.menu-item {
+      --mdc-text-button-container-height: 48px;
+      --mat-text-button-horizontal-padding: 24px;
+    }
+
+    .mat-mdc-button-persistent-ripple,
+    .mat-mdc-button-ripple {
+      display: none;
+    }
+  }
+}
+
+/* Submenu Styles */
+::ng-deep .submenu-panel {
+  margin-top: 8px;
+
+  .mat-mdc-menu-content {
+    padding: 8px 0;
+  }
+
+  .submenu-item {
+    font-size: 14px;
+    color: #424242;
+    padding: 12px 24px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+
+    &.active-submenu-item {
+      background-color: #e8e6fc;
+      color: #4f46e5;
+      font-weight: 500;
+    }
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .horizontal-menu {
+    padding: 0 8px;
+    overflow-x: auto;
+
+    .menu-item {
+      padding: 12px 16px;
+      white-space: nowrap;
+
+      .menu-label-with-arrow {
+        display: none;
+      }
+
+      span:not(.menu-label-with-arrow) {
+        display: none;
+      }
+
+      mat-icon:not(.dropdown-icon) {
+        margin: 0;
+      }
+    }
+  }
+}

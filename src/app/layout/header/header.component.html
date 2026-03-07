@@ -1,0 +1,31 @@
+<mat-toolbar class="header">
+  <div class="header-left">
+    <mat-icon class="logo-icon">security</mat-icon>
+    <span class="logo-text">Sistema EPI</span>
+  </div>
+  
+  <div class="header-right">
+    <span class="user-name-header">{{ userName }}</span>
+    <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-menu-button">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #userMenu="matMenu">
+      <div class="user-menu-header">
+        <mat-icon>person</mat-icon>
+        <div class="user-menu-info">
+          <span class="menu-user-name">{{ userName }}</span>
+          <span class="menu-user-email">{{ userEmail }}</span>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="onProfile()">
+        <mat-icon>settings</mat-icon>
+        <span>Perfil</span>
+      </button>
+      <button mat-menu-item (click)="onLogout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Sair</span>
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

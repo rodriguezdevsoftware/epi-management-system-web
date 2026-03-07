@@ -1,4 +1,14 @@
-<div class="home-container">
-  <h1>Bem-vindo ao Sistema de Gestão de EPI</h1>
-  <p>Login realizado com sucesso.</p>
-</div>
+<app-main-layout [userName]="userName" [userEmail]="userEmail">
+  <div class="welcome-container">
+    <mat-card class="welcome-card">
+      <mat-card-content>
+        <div class="welcome-content">
+          <mat-icon class="welcome-icon">waving_hand</mat-icon>
+          <h1>Bem-vindo ao Sistema de Gestão de EPI</h1>
+          <p>Olá, {{ userName }}! É ótimo ter você de volta.</p>
+          <p class="welcome-subtitle">Selecione uma opção no menu acima para começar.</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</app-main-layout>

@@ -1,0 +1,96 @@
+.header {
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: white;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  flex-shrink: 0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-name-header {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+}
+
+.user-menu-button {
+  color: white;
+  
+  mat-icon {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* User Menu Styles */
+::ng-deep .mat-mdc-menu-panel {
+  min-width: 280px !important;
+}
+
+.user-menu-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  gap: 12px;
+  background: #f5f5f5;
+
+  mat-icon {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    color: #4f46e5;
+  }
+
+  .user-menu-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .menu-user-name {
+      font-size: 16px;
+      font-weight: 500;
+      color: #424242;
+    }
+
+    .menu-user-email {
+      font-size: 13px;
+      color: #757575;
+    }
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .user-name-header {
+    display: none;
+  }
+}
