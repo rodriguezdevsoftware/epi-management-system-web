@@ -1,0 +1,40 @@
+<nav class="horizontal-menu">
+  <ng-container *ngFor="let item of menuItems">
+    <!-- Item sem dropdown -->
+    <div *ngIf="!item.children" class="menu-item-wrapper">
+      <a [routerLink]="item.route" 
+         routerLinkActive="active-menu-item"
+         class="menu-item"
+         mat-button>
+        <mat-icon>{{ item.icon }}</mat-icon>
+        <span>{{ item.label }}</span>
+      </a>
+    </div>
+
+    <!-- Item com dropdown -->
+    <div *ngIf="item.children" class="menu-item-wrapper">
+      <button 
+        mat-button 
+        [matMenuTriggerFor]="submenu"
+        class="menu-item dropdown-item"
+        #menuTrigger="matMenuTrigger"
+        [class.active-menu-item]="isMenuActive(item)">
+        <mat-icon>{{ item.icon }}</mat-icon>
+        <span class="menu-label-with-arrow">
+          {{ item.label }}
+          <mat-icon class="dropdown-icon">arrow_drop_down</mat-icon>
+        </span>
+      </button>
+      
+      <mat-menu #submenu="matMenu" class="submenu-panel">
+        <a *ngFor="let subItem of item.children" 
+           [routerLink]="subItem.route"
+           routerLinkActive="active-submenu-item"
+           mat-menu-item
+           class="submenu-item">
+          {{ subItem.label }}
+        </a>
+      </mat-menu>
+    </div>
+  </ng-container>
+</nav>
