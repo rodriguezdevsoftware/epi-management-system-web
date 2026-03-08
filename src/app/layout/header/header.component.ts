@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,24 @@ export class HeaderComponent {
   @Input() userName: string = 'Usuário';
   @Input() userEmail: string = 'usuario@example.com';
 
+  constructor(private router: Router) {
+    console.log('HeaderComponent initialized');
+  }
+
   onLogout() {
-    // Implementar lógica de logout
-    console.log('Logout clicked');
+    console.log('onLogout called - starting logout process');
+    
+    // Limpar dados
+    localStorage.clear();
+    sessionStorage.clear();
+    console.log('Storage cleared');
+    
+    // Redirecionar
+    console.log('Attempting to navigate to /login');
+    this.router.navigate(['/login']).then(
+      (success) => console.log('Navigation success:', success),
+      (error) => console.error('Navigation error:', error)
+    );
   }
 
   onProfile() {
