@@ -43,6 +43,12 @@
 
       <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
 
+        <!-- Mensagem de erro -->
+        <mat-error *ngIf="errorMessage" class="error-message">
+          <mat-icon>error_outline</mat-icon>
+          {{ errorMessage }}
+        </mat-error>
+
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Email</mat-label>
           <input matInput type="email" formControlName="email" placeholder="seu@email.com">
@@ -68,8 +74,9 @@
           <a (click)="onForgotPassword()" class="link">Esqueceu a senha?</a>
         </div>
 
-        <button mat-raised-button color="primary" class="full-width login-button" type="submit" [disabled]="loginForm.invalid">
-          Entrar
+        <button mat-raised-button color="primary" class="full-width login-button" type="submit" [disabled]="loginForm.invalid || isLoading">
+          <span *ngIf="!isLoading">Entrar</span>
+          <span *ngIf="isLoading">Entrando...</span>
         </button>
 
       </form>

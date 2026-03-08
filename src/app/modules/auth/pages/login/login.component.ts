@@ -11,8 +11,13 @@ export class LoginComponent {
   
   loginForm: FormGroup;
   hidePassword = true;
+  errorMessage: string = '';
+  isLoading: boolean = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder, 
+    private authService: AuthService
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -21,8 +26,27 @@ export class LoginComponent {
 
   onLogin() {
     if (this.loginForm.valid) {
+      this.isLoading = true;
+      this.errorMessage = '';
+      
       const { email, password } = this.loginForm.value;
-      this.authService.login(email, password);
+      
+      this.authService.login(email, password).subscribe({
+        next: (response) => {
+          this.isLoading = false;
+          // Login bem-sucedido, navegação é gerenciada pelo service
+        },
+        error: (error) => {
+          this.isLoading = false;
+          this.errorMessage = error.message || 'Erro ao fazer login. Tente novamente.';
+          console.error('Erro no login:', error);
+        }
+      });
+    } else {
+      // Marcar todos os campos como "touched" para mostrar erros de validação
+      Object.keys(this.loginForm.controls).forEach(key => {
+        this.loginForm.get(key)?.markAsTouched();
+      });
     }
   }
 
