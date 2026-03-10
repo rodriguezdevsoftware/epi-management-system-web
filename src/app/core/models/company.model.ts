@@ -11,7 +11,6 @@ export interface Company {
   email: string;
   cnpj: string;
   createdAt: string;
-  userRole: 'admin' | 'editor' | 'viewer';
   permissionId: string;
 }
 
