@@ -4,6 +4,53 @@
     <span class="logo-text">Sistema EPI</span>
   </div>
   
+  <div class="header-center">
+    <!-- Seletor de empresa -->
+    <div class="company-selector" *ngIf="!isLoadingCompanies && companies.length > 0">
+      <button 
+        mat-button 
+        [matMenuTriggerFor]="companyMenu" 
+        class="company-selector-button"
+        *ngIf="companies.length > 1"
+      >
+        <mat-icon>business</mat-icon>
+        <span class="company-name">{{ selectedCompany?.tradeName || 'Selecione uma empresa' }}</span>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      
+      <div class="company-display" *ngIf="companies.length === 1">
+        <mat-icon>business</mat-icon>
+        <span class="company-name">{{ selectedCompany?.tradeName }}</span>
+      </div>
+      
+      <mat-menu #companyMenu="matMenu" class="company-menu">
+        <div class="company-menu-header">
+          <mat-icon>business</mat-icon>
+          <span>Selecione uma empresa</span>
+        </div>
+        <mat-divider></mat-divider>
+        <button 
+          mat-menu-item 
+          *ngFor="let company of companies" 
+          (click)="selectCompany(company)"
+          [class.selected]="selectedCompany?._id === company._id"
+        >
+          <div class="company-menu-item">
+            <span class="company-item-name">{{ company.tradeName }}</span>
+            <span class="company-item-role">{{ company.userRole }}</span>
+            <mat-icon *ngIf="selectedCompany?._id === company._id" class="check-icon">check</mat-icon>
+          </div>
+        </button>
+      </mat-menu>
+    </div>
+    
+    <!-- Loading -->
+    <div class="company-loading" *ngIf="isLoadingCompanies">
+      <mat-spinner diameter="24"></mat-spinner>
+      <span>Carregando empresas...</span>
+    </div>
+  </div>
+  
   <div class="header-right">
     <span class="user-name-header">{{ userName }}</span>
     <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-menu-button">

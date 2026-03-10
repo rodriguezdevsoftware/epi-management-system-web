@@ -9,7 +9,8 @@ import {
   LoginRequest, 
   RegisterRequest, 
   User, 
-  ErrorResponse 
+  ErrorResponse,
+  Company 
 } from '../../../core/models';
 
 @Injectable({
@@ -19,6 +20,9 @@ export class AuthService {
   private readonly API_URL = `${environment.apiUrl}/auth`;
   private currentUserSubject = new BehaviorSubject<User | null>(this.getCurrentUser());
   public currentUser$ = this.currentUserSubject.asObservable();
+  
+  private currentCompanySubject = new BehaviorSubject<Company | null>(this.getCurrentCompany());
+  public currentCompany$ = this.currentCompanySubject.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -58,8 +62,10 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('currentCompany');
     sessionStorage.clear();
     this.currentUserSubject.next(null);
+    this.currentCompanySubject.next(null);
     this.router.navigate(['/login']);
   }
 
@@ -106,6 +112,23 @@ export class AuthService {
   getUserEmail(): string | null {
     const user = this.getCurrentUser();
     return user ? user.email : null;
+  }
+
+  setCurrentCompany(company: Company): void {
+    localStorage.setItem('currentCompany', JSON.stringify(company));
+    this.currentCompanySubject.next(company);
+  }
+
+  getCurrentCompany(): Company | null {
+    const companyStr = localStorage.getItem('currentCompany');
+    if (companyStr) {
+      try {
+        return JSON.parse(companyStr);
+      } catch {
+        return null;
+      }
+    }
+    return null;
   }
 
   getMe(): Observable<{ success: boolean; user: User }> {
