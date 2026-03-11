@@ -21,6 +21,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/home/home.module').then(m => m.HomeModule),
     canActivate: [authGuard]
+  },
+
+  {
+    path: 'registrations/positions',
+    loadChildren: () =>
+      import('./modules/registrations/positions/positions.module').then(m => m.PositionsModule),
+    canActivate: [authGuard]
   }
 
 ];

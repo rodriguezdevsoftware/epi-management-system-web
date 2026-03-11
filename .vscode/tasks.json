@@ -1,5 +1,4 @@
 {
-  // For more information, visit: https://go.microsoft.com/fwlink/?LinkId=733558
   "version": "2.0.0",
   "tasks": [
     {
@@ -37,6 +36,54 @@
           }
         }
       }
+    },
+    {
+      "label": "Git: Create Feature Branch (+ commit + push)",
+      "type": "shell",
+      "command": "bash",
+      "args": ["${workspaceFolder}/.vscode/scripts/create-feature.sh"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Git: Create Bugfix Branch (+ commit + push)",
+      "type": "shell",
+      "command": "bash",
+      "args": ["${workspaceFolder}/.vscode/scripts/create-bugfix.sh"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Git: Create Refactor Branch (+ commit + push)",
+      "type": "shell",
+      "command": "bash",
+      "args": ["${workspaceFolder}/.vscode/scripts/create-refactor.sh"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Git: Create Documentation Branch (+ commit + push)",
+      "type": "shell",
+      "command": "bash",
+      "args": ["${workspaceFolder}/.vscode/scripts/create-docs.sh"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
     }
   ]
 }

@@ -1,0 +1,72 @@
+<app-main-layout [userName]="userName" [userEmail]="userEmail">
+  <div class="position-form-container">
+    <div class="page-header">
+      <div class="header-info">
+        <mat-icon class="header-icon">{{ isEditMode ? 'edit' : 'add_circle' }}</mat-icon>
+        <div class="header-text">
+          <h1>{{ pageTitle }}</h1>
+          <p>{{ isEditMode ? 'Atualize as informações do cargo' : 'Preencha os dados para cadastrar um novo cargo' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <mat-card class="form-card">
+      <!-- Loading -->
+      <div *ngIf="loading && isEditMode" class="loading-container">
+        <mat-spinner diameter="50"></mat-spinner>
+        <p>Carregando dados...</p>
+      </div>
+
+      <!-- Error -->
+      <div *ngIf="error" class="error-container">
+        <mat-icon>error_outline</mat-icon>
+        <div class="error-content">
+          <h3>Erro ao processar</h3>
+          <p>{{ error }}</p>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form [formGroup]="positionForm" (ngSubmit)="onSubmit()" *ngIf="!loading || !isEditMode">
+        <div class="form-content">
+          <div class="form-section">
+            <h3 class="section-title">
+              <mat-icon>info</mat-icon>
+              Informações do Cargo
+            </h3>
+            
+            <div class="form-row">
+              <mat-form-field appearance="outline" class="form-field-small">
+                <mat-label>Código</mat-label>
+                <mat-icon matPrefix>tag</mat-icon>
+                <input matInput formControlName="code" placeholder="Ex: OPER01">
+                <mat-hint>Campo opcional para identificação rápida</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="form-field-large">
+                <mat-label>Descrição do Cargo</mat-label>
+                <mat-icon matPrefix>work</mat-icon>
+                <input matInput formControlName="description" placeholder="Ex: Operador de Produção" required>
+                <mat-error *ngIf="positionForm.get('description')?.invalid">
+                  {{ getErrorMessage('description') }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button mat-stroked-button type="button" (click)="onCancel()" [disabled]="loading" class="cancel-btn">
+            <mat-icon>close</mat-icon>
+            Cancelar
+          </button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="loading" class="submit-btn">
+            <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+            <mat-icon *ngIf="!loading">{{ isEditMode ? 'save' : 'add' }}</mat-icon>
+            <span *ngIf="!loading">{{ isEditMode ? 'Salvar Alterações' : 'Criar Cargo' }}</span>
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</app-main-layout>
