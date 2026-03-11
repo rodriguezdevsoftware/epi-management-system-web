@@ -33,10 +33,11 @@ export const MENU_ITEMS: MenuItem[] = [
     icon: 'list', 
     label: 'Cadastros',
     children: [
-      { label: 'Funcionários', route: '/cadastros/funcionarios' },
-      { label: 'EPIs', route: '/cadastros/epis' },
-      { label: 'Setores', route: '/cadastros/setores' },
-      { label: 'Fornecedores', route: '/cadastros/fornecedores' }
+      { label: 'Funcionários', route: '/registrations/employees' },
+      { label: 'Cargos', route: '/registrations/positions' },
+      { label: 'EPIs', route: '/registrations/epis' },
+      { label: 'Setores', route: '/registrations/departments' },
+      { label: 'Fornecedores', route: '/registrations/suppliers' }
     ]
   }
 ];
