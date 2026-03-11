@@ -38,6 +38,34 @@
       }
     },
     {
+      "label": "Start: Angular Web",
+      "type": "shell",
+      "command": "ng serve",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start: Todos os projetos (MongoDB + API + Web)",
+      "type": "shell",
+      "command": "bash",
+      "args": ["${workspaceFolder}/.vscode/scripts/start-all.sh"],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Git: Create Feature Branch (+ commit + push)",
       "type": "shell",
       "command": "bash",
@@ -78,6 +106,18 @@
       "type": "shell",
       "command": "bash",
       "args": ["${workspaceFolder}/.vscode/scripts/create-docs.sh"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Git: Sync Main Branch (checkout + pull)",
+      "type": "shell",
+      "command": "bash",
+      "args": ["${workspaceFolder}/.vscode/scripts/sync-main.sh"],
       "presentation": {
         "reveal": "always",
         "panel": "new",
